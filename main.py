@@ -25,7 +25,6 @@ def translate_role_for_streamlit(user_role):
     else:
         return user_role
 
-
 if selected == "Chatbot":
     model = load_gemini_pro_model()
 
