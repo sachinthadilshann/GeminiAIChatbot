@@ -23,3 +23,6 @@ def gemini_pro_vision_captioning(prompt, image):
     response = gemini_pro_vision_model.generate_content([prompt, image])
     result = response.text
     return result
+
+
+

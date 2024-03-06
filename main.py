@@ -67,4 +67,3 @@ if selected == "Image Captioning":
 
         with coll2:
             st.write(caption)
-            
