@@ -2,7 +2,6 @@ import os
 import json
 import google.generativeai as ga
 
-
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 config_file_path = f"{working_dir}/config.json"
@@ -25,4 +24,9 @@ def gemini_pro_vision_captioning(prompt, image):
     return result
 
 
+def gemini_pro_response(user_prompt):
+    gemini_pro_model = ga.GenerativeModel("gemini-pro")
+    response = gemini_pro_model.generate_content(user_prompt)
+    result = response.text
+    return result
 
