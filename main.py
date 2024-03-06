@@ -1,8 +1,8 @@
 import streamlit as st
 import os
-
+from PIL import Image
 from streamlit_option_menu import option_menu
-from gemini_uitility import load_gemini_pro_model
+from gemini_uitility import *
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 # print(working_dir)
@@ -50,5 +50,23 @@ if selected == "Chatbot":
         with st.chat_message("assistant"):
             st.markdown(gemini_response.text)
 
+if selected == "Image Captioning":
+    
+    st.title("Image Captioning")
+    
+    upload_image = st.file_uploader("Upload Image....", type=["jpg", "jpeg", "png"])
+    
+    if st.button("Generate Caption"):
+        image = Image.open(upload_image)
+        coll1,coll2 = st.columns(2)
+        with coll1:
+            resize_image = image.resize((800, 500))
+            st.image(resize_image)
+        dafault_prompt = "Write a caption for this image"
+        caption = gemini_pro_vision_captioning(dafault_prompt, image)
+
+        with coll2:
+            st.write(caption)
+            
 
 

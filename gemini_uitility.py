@@ -1,7 +1,7 @@
 import os
 import json
 import google.generativeai as ga
-import streamlit as st
+
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -16,3 +16,10 @@ ga.configure(api_key=GOOGLE_API_KEY)
 def load_gemini_pro_model():
     gemini_pro_model = ga.GenerativeModel("gemini-pro")
     return gemini_pro_model
+
+
+def gemini_pro_vision_captioning(prompt, image):
+    gemini_pro_vision_model = ga.GenerativeModel("gemini-pro-vision")
+    response = gemini_pro_vision_model.generate_content([prompt, image])
+    result = response.text
+    return result
