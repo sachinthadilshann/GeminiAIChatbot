@@ -28,11 +28,11 @@ def translate_role_for_streamlit(user_role):
 if selected == "Chatbot":
     model = load_gemini_pro_model()
 
-    if "Chat Session" not in st.session_state:
+    if "chat_session" not in st.session_state:
         st.session_state.chat_session = model.start_chat(history=[])
 
-    st.title("Chatbot")
 
+    st.title("Chatbot")
     for message in st.session_state.chat_session.history:
         with st.chat_message(translate_role_for_streamlit(message.role)):
             st.markdown(message.parts[0].text)
@@ -42,7 +42,7 @@ if selected == "Chatbot":
         st.chat_message("User").markdown(user_prompt)
         gemini_response = st.session_state.chat_session.send_message(user_prompt)
 
-        with st.chat_message("assistant"):
+        with st.chat_message("Assistant"):
             st.markdown(gemini_response.text)
 
 if selected == "Image Captioning":
